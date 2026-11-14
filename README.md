@@ -1,3 +1,5 @@
+<img src="icon.png" width="96" height="96" alt="idol icon">
+
 # idol
 
 A small image-to-3D app for [IDOL](https://huggingface.co/speridlabs/idol) and [IDOL Turbo](https://huggingface.co/speridlabs/idol-turbo), with a one-click Pinokio launcher. The page is the canvas: no navbar or permanent panels.
