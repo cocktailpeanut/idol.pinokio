@@ -1,0 +1,83 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #26382f;
+  background: #fff;
+  color-scheme: light;
+  --ink: #26382f;
+  --muted: #657268;
+  --accent: #345646;
+  --line: #dfe5df;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: wait; }
+[hidden] { display: none !important; }
+::selection { background: #dce8dd; color: #26382f; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+#canvas { position: relative; width: 100%; height: 100svh; height: 100dvh; min-height: 340px; overflow: hidden; background: #fff; }
+#dropzone {
+  position: absolute; inset: 0; width: 100%; border: 0; background: transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; color: var(--ink);
+}
+#dropzone:focus-visible { outline-offset: -8px; }
+.drop-title { font-size: 24px; font-weight: 400; letter-spacing: -.025em; }
+.drop-hint { font-size: 14px; color: var(--muted); }
+#image {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  max-width: calc(100% - 80px); max-height: calc(100% - 190px);
+  object-fit: contain; user-select: none; pointer-events: none;
+}
+#viewer { position: absolute; inset: 0; touch-action: none; }
+#viewer canvas { display: block; width: 100%; height: 100%; }
+#viewer:focus-visible { outline-offset: -8px; }
+#dock {
+  position: absolute; z-index: 2; bottom: max(28px, env(safe-area-inset-bottom));
+  left: 50%; transform: translateX(-50%); display: flex; align-items: center;
+  justify-content: center; gap: 22px; white-space: nowrap;
+}
+#dock button, #dock a { font-size: 14px; line-height: 20px; }
+.quiet { padding: 10px 0; border: 0; background: #fff; color: var(--muted); }
+.quiet:hover { color: var(--ink); }
+#models { display: flex; gap: 4px; padding: 3px; background: #f2f5f1; border-radius: 8px; }
+#models button { background: transparent; border: 0; border-radius: 5px; color: #59665d; padding: 7px 13px; }
+#models button[aria-pressed="true"] { color: var(--ink); background: #fff; box-shadow: 0 1px 3px #24342b12; }
+#models button:hover { color: var(--ink); }
+.primary { display: inline-block; border: 0; border-radius: 6px; padding: 11px 20px; color: #fff; background: var(--accent); text-decoration: none; }
+.primary:hover { background: #294638; }
+#activity {
+  position: absolute; z-index: 2; inset: auto 20px 80px; display: flex;
+  flex-direction: column; align-items: center; gap: 14px; font-size: 14px;
+  color: var(--muted); text-align: center;
+}
+#canvas[data-state="generating"] #image { opacity: .4; top: calc(50% - 64px); }
+#elapsed { font-size: 12px; font-variant-numeric: tabular-nums; }
+.activity-line { display: block; position: relative; height: 2px; width: 120px; background: #e5ebe5; overflow: hidden; }
+.activity-line::after { content: ""; position: absolute; width: 35%; height: 100%; background: var(--accent); animation: working 1.4s ease-in-out infinite; }
+@keyframes working { from { transform: translateX(-120%); } to { transform: translateX(400%); } }
+#error {
+  position: absolute; z-index: 3; bottom: 98px; left: 50%; transform: translateX(-50%);
+  width: min(540px, calc(100% - 40px)); padding: 14px 18px; border: 1px solid #e8d9d4;
+  border-radius: 10px; background: #fffaf7; color: #743a2d;
+  font-size: 14px; line-height: 1.5; text-align: center;
+}
+#error p { margin: 0; }
+#setup { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; }
+#setup a { color: #743a2d; text-underline-offset: 3px; }
+#orbit-hint { position: absolute; z-index: 2; bottom: 82px; left: 0; right: 0; margin: 0; color: var(--muted); font-size: 12px; text-align: center; pointer-events: none; }
+#drop-overlay {
+  position: absolute; z-index: 10; inset: 12px; display: grid; place-items: center;
+  border: 1px dashed #6f8e79; border-radius: 12px; background: #f4f8f2f2;
+  font-size: 24px; letter-spacing: -.025em; pointer-events: none;
+}
+@media (max-width: 540px) {
+  #dock { gap: 14px; bottom: max(22px, env(safe-area-inset-bottom)); }
+  #models button { padding: 8px 10px; }
+  #dock .primary { padding: 11px 16px; }
+  #dock button, #dock a { font-size: 13px; }
+  #image { max-width: calc(100% - 32px); max-height: calc(100% - 170px); }
+}
+@media (pointer: coarse) { #dock button, #dock a { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .activity-line::after { animation: none; left: 32%; } }

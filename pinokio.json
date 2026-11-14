@@ -1,0 +1,10 @@
+{
+  "title": "idol",
+  "description": "A minimal image-to-3D app with IDOL, IDOL Turbo, a rotatable Gaussian-splat preview, and low-memory mode. Windows/Linux and Apple Silicon macOS, subject to upstream hardware support.",
+  "icon": "icon.png",
+  "platform": ["win32", "darwin", "linux"],
+  "links": [
+    {"title": "IDOL SDK", "value": "https://github.com/speridlabs/idol-sdk"},
+    {"title": "IDOL Turbo", "value": "https://huggingface.co/speridlabs/idol-turbo"}
+  ]
+}

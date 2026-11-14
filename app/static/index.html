@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>idol</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <script type="importmap">{"imports":{"three":"/static/vendor/three.module.js"}}</script>
+  <script type="module" src="/static/app.js"></script>
+</head>
+<body>
+  <!-- THESIS: the page is the tool. OWN-WORLD: white, system sans, muted green.
+       STORY: drop, generate, rotate, download, start again.
+       FIRST VIEWPORT: one full-page canvas; controls appear only when useful.
+       FORM: user-approved Canvas, with no navbar or permanent panels. -->
+  <main id="canvas" data-state="empty" aria-label="Image to 3D">
+    <input id="file" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+    <button id="dropzone" type="button" aria-label="Choose an image">
+      <span class="drop-title">Drop an image</span>
+      <span class="drop-hint">or click to choose</span>
+    </button>
+    <img id="image" alt="Image to turn into 3D" hidden>
+    <div id="viewer" aria-label="3D preview. Drag to rotate, scroll to zoom." tabindex="0" hidden></div>
+    <div id="activity" role="status" aria-live="polite" hidden>
+      <span id="phase">Generating 3D</span>
+      <span id="elapsed" aria-hidden="true" hidden></span>
+      <span class="activity-line" aria-hidden="true"></span>
+    </div>
+    <div id="error" role="alert" hidden>
+      <p id="error-message"></p>
+      <div id="setup" hidden>
+        <a href="https://huggingface.co/cocktailpeanut/dinov3-vith16plus-pretrain-lvd1689m" target="_blank" rel="noreferrer">DINOv3 repository</a>
+        <a href="https://huggingface.co/cocktailpeanut/FLUX.2-vae" target="_blank" rel="noreferrer">FLUX.2 VAE repository</a>
+      </div>
+    </div>
+    <div id="dock" aria-label="Image controls" hidden>
+      <button id="new-image" class="quiet" type="button">New image</button>
+      <div id="models" role="group" aria-label="Model">
+        <button type="button" data-model="turbo" aria-pressed="true">Turbo</button>
+        <button type="button" data-model="standard" aria-pressed="false">IDOL</button>
+      </div>
+      <button id="generate" class="primary" type="button">Generate</button>
+      <a id="download" class="primary" download="model.ply" hidden>Download</a>
+    </div>
+    <p id="orbit-hint" hidden>Drag to rotate · scroll to zoom</p>
+    <div id="drop-overlay" aria-hidden="true" hidden>Drop an image</div>
+    <noscript>This app needs JavaScript to upload images and display 3D results.</noscript>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# The SDK revision includes CUDA, MPS and CPU device selection.
+idol @ git+https://github.com/speridlabs/idol-sdk.git@8db700349a5570aac390e4780fa32e3eed6b587a
+torch==2.7.1
+torchvision==0.22.1
+fastapi==0.162.7
+uvicorn==0.54.0
+python-multipart==0.0.33
+transformers==5.23.0
+diffusers==0.40.0
+huggingface-hub==1.31.0
+tensordict==0.8.3
+numpy>=1.26,<3
